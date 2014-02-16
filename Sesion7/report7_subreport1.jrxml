@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report7_subreport1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="b640acd6-742e-4ebb-b843-7c4562b48a27">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="alumnos_id" class="java.lang.Long"/>
+	<queryString language="SQL">
+		<![CDATA[Select
+alumnos_materias.alumno_id as alumnos_materias_alumno_id,
+alumnos_materias.materia_id as alumnos_materias_materia_id,
+materias.id AS materias_id,
+materias.nombre as materias_nombre
+from
+materias materias inner join alumnos_materias alumnos_materias on
+materias.id= alumnos_materias.materia_id
+and alumnos_materias.alumno_id= $P{alumnos_id}]]>
+	</queryString>
+	<field name="materias_nombre" class="java.lang.String"/>
+	<field name="materias_id" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="0e64c452-ff30-45fe-9bce-ca93c7b77413"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MATERIAS:]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement x="100" y="0" width="100" height="20" uuid="7021c56a-339e-45b6-a365-49309c12d397"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="200" y="0" width="100" height="20" uuid="95f30101-1e27-49db-becd-4e4e4360eef2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{materias_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="01397f06-766a-4105-8750-b9cac1fe54fb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{materias_id}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="15" width="555" height="1" uuid="1f666751-4085-4dcb-b2f3-a75d4fec7211"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>
